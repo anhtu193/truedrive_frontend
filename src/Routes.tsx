@@ -1,4 +1,5 @@
 import { useRoutes } from "react-router-dom";
+import "./index.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";

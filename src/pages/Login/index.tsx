@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../../context/UserContext";
 
-const Login = () => {
+export default function Login() {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [error, setError] = useState<string | null>(null);
@@ -29,7 +29,7 @@ const Login = () => {
 				// Store the JWT token in local storage or a cookie
 				localStorage.setItem("token", data.token);
 				console.log("Token stored:", data.token);
-				console.log("User:", data.user);
+				console.log(data);
 				setUser(data.user);
 				navigate("/");
 			} else {
@@ -72,6 +72,4 @@ const Login = () => {
 			{error && <p style={{ color: "red" }}>{error}</p>}
 		</form>
 	);
-};
-
-export default Login;
+}
