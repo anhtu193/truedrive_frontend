@@ -1,5 +1,8 @@
+import ExploreVehiclesSection from "@/components/ExploreVehiclesSection";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import MakeShowcase from "@/components/MakeShowcase";
+import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -27,19 +30,14 @@ export default function Home() {
 					content="Discover your perfect car with our extensive listings. From SUVs to Sedans, find the best deals on the latest models and premium makes like Audi, BMW, and Ford. Start your search now!"
 				/>
 			</Helmet>
-			<div className="w-full h-fit overflow-y-clip">
+			<div className="w-full h-fit ">
 				<Header />
 				<Hero />
+				<MakeShowcase />
+				<ExploreVehiclesSection />
+				<WhyChooseUsSection />
 			</div>
 		</>
-		// <div className="flex w-full gap-[30px] md:flex-col">
-		// 	{/* {makes.map((make) => (
-		// 		<MakeItem
-		// 			make={make}
-		// 			key={make.makeId}
-		// 		/>
-		// 	))} */}
-		// </div>
 	);
 }
 

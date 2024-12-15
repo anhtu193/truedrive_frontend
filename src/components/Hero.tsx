@@ -51,7 +51,7 @@ export default function Hero() {
 
 	if (isLoading) {
 		return (
-			<div className="flex items-center justify-center h-[60px] bg-pink-700">
+			<div className="flex items-center justify-center h-[60px] bg-transparent">
 				<p className="text-white text-sm">Loading...</p>
 			</div>
 		);
@@ -62,7 +62,7 @@ export default function Hero() {
 			<div className="relative w-full">
 				<img
 					src="/images/hero.png"
-					className="object-cover"
+					className="object-cover select-none"
 				/>
 				<span className="select-none absolute inset-0 flex items-center mb-80 justify-center text-white text-base">
 					Find your dream car today - Explore our latest models!

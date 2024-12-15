@@ -16,6 +16,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Header() {
 	const [catalogs, setCatalogs] = useState<Catalog[]>([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [scrolled, setScrolled] = useState(false);
 	const user = useUser();
 	const naviagte = useNavigate();
 
@@ -36,24 +37,43 @@ export default function Header() {
 		fetchCatalogs();
 	}, []);
 
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 700) {
+				setScrolled(true);
+			} else {
+				setScrolled(false);
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
+
 	if (isLoading) {
 		return (
-			<div className="flex items-center justify-center h-[60px] bg-pink-700">
+			<div className="flex items-center justify-center h-[60px] bg-transparent">
 				<p className="text-white text-sm">Loading...</p>
 			</div>
 		);
 	}
 
 	return (
-		<header className="fixed z-50 top-0 left-0 right-0 px-[60px] py-[20px] bg-transparent h-[60px] ">
-			<div className="justify-start w-full flex flex-row items-center ">
+		<header
+			className={`fixed transition-colors duration-300 z-50 top-0 left-0 right-0 px-[60px] py-[20px] h-fit ${
+				scrolled ? "bg-[#050B20]" : "bg-transparent"
+			}`}
+		>
+			<div className="justify-between w-full flex flex-row items-center">
 				<Link to="/">
 					<img
 						src="/images/logo.png"
 						className="h-[20px] w-fit "
 					/>
 				</Link>
-				<div className="flex ms-[720px] flex-row gap-6">
+				<div className="flex flex-row gap-6">
 					<Menubar className="gap-3 bg-transparent border-0 text-white shadow-none">
 						<MenubarMenu>
 							<MenubarTrigger className="rounded-xl px-3 py-2 cursor-pointer">
