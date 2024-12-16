@@ -1,21 +1,21 @@
 @font-face {
 	font-display: swap;
 	font-style: normal;
-	src: url("/public/fonts/DMSansMedium.ttf");
+	src: url("/fonts/DMSansMedium.ttf");
 	font-family: "DM Sans";
 	font-weight: 500;
 }
 @font-face {
 	font-display: swap;
 	font-style: normal;
-	src: url("/public/fonts/DMSansRegular.ttf");
+	src: url("/fonts/DMSansRegular.ttf");
 	font-family: "DM Sans";
 	font-weight: 400;
 }
 @font-face {
 	font-display: swap;
 	font-style: normal;
-	src: url("/public/fonts/DMSansBold.ttf");
+	src: url("/fonts/DMSansBold.ttf");
 	font-family: "DM Sans";
 	font-weight: 700;
 }

@@ -10,20 +10,46 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { Car } from "@/types/Car";
+import axios from "axios";
 import { Bookmark, Calendar, Car as CarIcon, Fuel } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 export default function CarItem({ car }: { car: Car }) {
 	const [saved, setSaved] = useState(false);
+	const [catalog, setCatalog] = useState("");
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
+		async function fetchCarCatalog() {
+			try {
+				const { data } = await axios.get(
+					`https://localhost:7174/api/Catalog/${car.catalogId}`
+				);
+				setCatalog(data.catalogName); // Assuming 'name' is a property of the catalog object
+				console.log(data);
+			} catch (error) {
+				console.error("Error fetching catalog:", error);
+			} finally {
+				setIsLoading(false);
+			}
+		}
+
+		fetchCarCatalog();
 		setSaved(saved);
-	}, [saved]);
+	}, [car.catalogId, saved]);
 
 	const handleSave = (saved: boolean) => {
 		// if (!saved) bookmarkMutation.mutate(liteId);
 		// else unBookmarkMutation.mutate(liteId);
 	};
+
+	if (isLoading) {
+		return (
+			<div className="flex items-center justify-center h-[60px] bg-transparent">
+				<p className="text-white text-sm">Loading...</p>
+			</div>
+		);
+	}
 
 	return (
 		<Card className="rounded-lg shadow-md max-w-[290px]">
@@ -64,16 +90,16 @@ export default function CarItem({ car }: { car: Car }) {
 			</CardHeader>
 			<Separator />
 			{/* Card Content */}
-			<CardContent className="flex justify-between items-center text-sm text-gray-600 px-10 mt-3 -mb-3">
-				<div className="flex flex-col items-center mt-1 ">
+			<CardContent className="flex justify-between items-center text-sm text-gray-600 mt-3 -mb-3">
+				<div className="flex flex-col items-center mt-1 w-[77px] ">
 					<img
 						src="images/img_car.svg"
 						alt="Feature Icon"
 						className="h-[18px] mb-1"
 					/>
-					<p className="font-medium">Sedan</p>
+					<p className="font-medium">{catalog}</p>
 				</div>
-				<div className="flex flex-col items-center">
+				<div className="flex flex-col items-center w-[77px] ">
 					<img
 						src="images/img_fuel.svg"
 						alt="Feature Icon"
@@ -81,7 +107,7 @@ export default function CarItem({ car }: { car: Car }) {
 					/>
 					<p className="font-medium">{car.fuel}</p>
 				</div>
-				<div className="flex flex-col items-center">
+				<div className="flex flex-col items-center w-[77px] ">
 					<img
 						src="images/img_calendar.svg"
 						alt="Feature Icon"

@@ -35,11 +35,11 @@ export default function MakeShowcase() {
 
 	return (
 		<div className="flex flex-col w-full h-[300px] mt-[75px] px-[130px]">
-			<div className="flex flex-row justify-between w-full h-fit cursor-pointer">
+			<div className="flex flex-row justify-between w-full h-fit">
 				<h2 className="text-[28px] font-bold text-black-900">
 					Explore Our Premium Makes
 				</h2>
-				<div className="flex flex-row gap-2 mt-3">
+				<div className="flex flex-row gap-2 mt-3 cursor-pointer">
 					<span className="text-[15px] font-medium text-black-900">
 						Show all makes
 					</span>

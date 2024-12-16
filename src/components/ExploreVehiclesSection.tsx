@@ -11,7 +11,10 @@ export default function ExploreVehiclesSection() {
 		async function fetchCars() {
 			try {
 				const { data } = await axios.get(
-					"https://localhost:7174/api/Car"
+					"https://localhost:7174/api/Car",
+					{
+						params: { limit: 4 },
+					}
 				);
 				setCars(data);
 				console.log(data);
@@ -34,11 +37,11 @@ export default function ExploreVehiclesSection() {
 	}
 	return (
 		<div className="flex flex-col w-full h-fit mt-[30px] px-[130px]">
-			<div className="flex flex-row justify-between w-full h-fit cursor-pointer">
+			<div className="flex flex-row justify-between w-full h-fit">
 				<h2 className="text-[28px] font-bold text-black-900">
 					Explore All Vehicles
 				</h2>
-				<div className="flex flex-row gap-2 mt-3">
+				<div className="flex flex-row gap-2 mt-3  cursor-pointer">
 					<span className="text-[15px] font-medium text-black-900">
 						View all
 					</span>
@@ -49,8 +52,13 @@ export default function ExploreVehiclesSection() {
 					/>
 				</div>
 			</div>
-			<div className="flex flex-row h-fit py-12">
-				<CarItem car={car[4]} />
+			<div className="flex gap-9 flex-row h-fit py-12">
+				{car.slice(0, 4).map((carItem, index) => (
+					<CarItem
+						key={index}
+						car={carItem}
+					/>
+				))}
 			</div>
 		</div>
 	);
