@@ -12,7 +12,7 @@ import React from "react";
 
 export default function BlogItem({ blog }: { blog: Blog }) {
 	return (
-		<Card className="w-[400px] h-[500px] border-none shadow-none cursor-pointer">
+		<Card className="w-[400px] h-fit border-none shadow-none cursor-pointer">
 			<CardContent className="p-0">
 				<img
 					src={blog.image}

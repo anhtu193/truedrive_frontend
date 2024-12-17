@@ -1,5 +1,6 @@
 import BlogSection from "@/components/BlogSection";
 import ExploreVehiclesSection from "@/components/ExploreVehiclesSection";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import MakeShowcase from "@/components/MakeShowcase";
@@ -40,6 +41,7 @@ export default function Home() {
 				<WhyChooseUsSection />
 				<RatingSection />
 				<BlogSection />
+				<Footer />
 			</div>
 		</>
 	);

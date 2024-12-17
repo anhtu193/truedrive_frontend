@@ -37,7 +37,7 @@ export default function BlogSection() {
 	}
 
 	return (
-		<div className="flex flex-col w-full h-[300px] mt-[75px] px-[130px]">
+		<div className="flex flex-col w-full h-fit my-[75px] px-[130px]">
 			<div className="flex flex-row justify-between w-full h-fit">
 				<h2 className="text-[28px] font-bold text-black-900">
 					Latest Blog Posts
