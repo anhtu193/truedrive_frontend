@@ -9,7 +9,7 @@ import {
 import { useUser } from "@/context/UserContext";
 import { Catalog } from "@/types/Catalog";
 import axios from "axios";
-import { ChevronDown, User } from "lucide-react";
+import { ChevronDown, LogOut, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -59,6 +59,13 @@ export default function Header() {
 			</div>
 		);
 	}
+
+	const handleLogout = () => {
+		console.log(localStorage.getItem("token"));
+		// Remove the JWT token from local storage or cookies
+		localStorage.removeItem("token");
+		window.location.href = "/login";
+	};
 
 	return (
 		<header
@@ -131,15 +138,28 @@ export default function Header() {
 							</>
 						)}
 					</Menubar>
-					<Button
-						className="rounded-3xl px-8 py-4 cursor-pointer"
-						variant="secondary"
-						onClick={() => {
-							naviagte("/login");
-						}}
-					>
-						<User /> Login
-					</Button>
+					{user.user?.role == "Customer" ||
+					user.user?.role == "Admin" ? (
+						<Button
+							className="rounded-3xl px-8 py-4 cursor-pointer"
+							variant="secondary"
+							onClick={() => {
+								handleLogout();
+							}}
+						>
+							<LogOut /> Sign out
+						</Button>
+					) : (
+						<Button
+							className="rounded-3xl px-8 py-4 cursor-pointer"
+							variant="secondary"
+							onClick={() => {
+								naviagte("/login");
+							}}
+						>
+							<User /> Sign in
+						</Button>
+					)}
 				</div>
 			</div>
 		</header>

@@ -1,3 +1,4 @@
+import BlogSection from "@/components/BlogSection";
 import ExploreVehiclesSection from "@/components/ExploreVehiclesSection";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -38,16 +39,8 @@ export default function Home() {
 				<ExploreVehiclesSection />
 				<WhyChooseUsSection />
 				<RatingSection />
+				<BlogSection />
 			</div>
 		</>
 	);
 }
-
-// const user = useUser();
-// const handleLogout = () => {
-// 	console.log(localStorage.getItem("token"));
-// 	// Remove the JWT token from local storage or cookies
-// 	localStorage.removeItem("token");
-// 	// Optionally, you can redirect the user to the login page
-// 	window.location.href = "/login";
-// };

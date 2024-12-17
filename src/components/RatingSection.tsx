@@ -7,6 +7,7 @@ import {
 	CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Textarea } from "@/components/ui/textarea";
+import { formatDate } from "@/lib/utils";
 import { Feedback } from "@/types/Feedback";
 import { Box, Rating } from "@mui/material";
 import axios from "axios";
@@ -61,15 +62,6 @@ export default function RatingSection() {
 			</div>
 		);
 	}
-
-	const formatDate = (dateString: string) => {
-		const options: Intl.DateTimeFormatOptions = {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-		};
-		return new Date(dateString).toLocaleDateString("en-US", options);
-	};
 
 	return (
 		<div className="flex flex-row h-[400px] my-20">
