@@ -3,3 +3,8 @@ body {
 	padding: 0;
 	font-family: DM Sans;
 }
+
+html body[data-scroll-locked] {
+	overflow: auto !important;
+	margin-right: 0px !important;
+}
