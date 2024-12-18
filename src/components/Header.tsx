@@ -37,6 +37,7 @@ export default function Header() {
 			}
 		}
 		fetchCatalogs();
+		console.log(user);
 	}, []);
 
 	useEffect(() => {
