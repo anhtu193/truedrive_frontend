@@ -82,7 +82,10 @@ export default function Footer() {
 						Showroom Policy
 					</h4>
 					{policies.map((policy) => (
-						<span className="cursor-pointer">
+						<span
+							className="cursor-pointer"
+							key={policy.policyId}
+						>
 							{policy.policyName}
 						</span>
 					))}
@@ -92,7 +95,12 @@ export default function Footer() {
 						Our Brands
 					</h4>
 					{makes.map((make) => (
-						<span className="cursor-default">{make.makeName}</span>
+						<span
+							className="cursor-default"
+							key={make.makeId}
+						>
+							{make.makeName}
+						</span>
 					))}
 				</div>
 				<div className="flex flex-col text-[14px] gap-3">
@@ -100,7 +108,10 @@ export default function Footer() {
 						Vehicle Types
 					</h4>
 					{catalogs.map((catalog) => (
-						<span className="cursor-default">
+						<span
+							className="cursor-default"
+							key={catalog.catalogId}
+						>
 							{catalog.catalogName}
 						</span>
 					))}
@@ -130,17 +141,17 @@ export default function Footer() {
 						/>
 						<img
 							src="images/twitter.svg"
-							alt="facebook"
+							alt="twitter"
 							className="cursor-pointer"
 						/>
 						<img
 							src="images/instagram.svg"
-							alt="facebook"
+							alt="instagram"
 							className="cursor-pointer"
 						/>
 						<img
 							src="images/linkedin.svg"
-							alt="facebook"
+							alt="linkedin"
 							className="cursor-pointer"
 						/>
 					</div>

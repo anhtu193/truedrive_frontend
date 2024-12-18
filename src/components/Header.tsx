@@ -11,7 +11,7 @@ import { Catalog } from "@/types/Catalog";
 import axios from "axios";
 import { ChevronDown, LogOut, User } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 export default function Header() {
 	const [catalogs, setCatalogs] = useState<Catalog[]>([]);
@@ -19,6 +19,8 @@ export default function Header() {
 	const [scrolled, setScrolled] = useState(false);
 	const user = useUser();
 	const naviagte = useNavigate();
+	const location = useLocation();
+	const currentRoute = location.pathname;
 
 	useEffect(() => {
 		async function fetchCatalogs() {
@@ -31,7 +33,7 @@ export default function Header() {
 			} catch (error) {
 				console.error("Error fetching catalogs:", error);
 			} finally {
-				setIsLoading(false); // Set loading to false after fetching data
+				setIsLoading(false);
 			}
 		}
 		fetchCatalogs();
@@ -70,7 +72,11 @@ export default function Header() {
 	return (
 		<header
 			className={`fixed transition-colors duration-300 z-50 top-0 left-0 right-0 px-[60px] py-[20px] h-fit ${
-				scrolled ? "bg-[#050B20]" : "bg-transparent"
+				currentRoute == "/"
+					? scrolled
+						? "bg-[#050B20]"
+						: "bg-transparent"
+					: "bg-[#050B20]"
 			}`}
 		>
 			<div className="justify-between w-full flex flex-row items-center">

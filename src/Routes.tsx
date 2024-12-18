@@ -1,3 +1,4 @@
+import CarDetail from "@/pages/CarDetail";
 import { useRoutes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -11,6 +12,7 @@ const ProjectRoutes = () => {
 		{ path: "/", element: <Home /> },
 		{ path: "*", element: <NotFound /> },
 		{ path: "login", element: <Login /> },
+		{ path: "car/:id", element: <CarDetail /> },
 	]);
 
 	return element;
