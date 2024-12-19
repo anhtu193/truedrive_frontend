@@ -1,3 +1,4 @@
+import BlogDetail from "@/pages/BlogDetail";
 import CarDetail from "@/pages/CarDetail";
 import { useRoutes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -13,6 +14,7 @@ const ProjectRoutes = () => {
 		{ path: "*", element: <NotFound /> },
 		{ path: "login", element: <Login /> },
 		{ path: "car/:id", element: <CarDetail /> },
+		{ path: "blog/:id", element: <BlogDetail /> },
 	]);
 
 	return element;
