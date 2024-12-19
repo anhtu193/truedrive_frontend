@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import axios from "axios";
 import { ExternalLink } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
@@ -18,7 +18,7 @@ export default function LogInForm() {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [error, setError] = useState<string | null>(null);
-	const { setUser } = useUser();
+	const { user, setUser } = useUser();
 	const navigate = useNavigate();
 	const [tab, setTab] = useState("1");
 
@@ -30,11 +30,18 @@ export default function LogInForm() {
 	const [confirmPassword, setConfirmPassword] = useState<string>("");
 	const [registerError, setRegisterError] = useState<string | null>(null);
 
+	useEffect(() => {
+		const storedUser = localStorage.getItem("user");
+		if (storedUser) {
+			setUser(JSON.parse(storedUser));
+		}
+	}, [setUser]);
+
 	const handleChangeTab = (event: React.SyntheticEvent, newValue: string) => {
 		setTab(newValue);
 	};
 
-	const handleSubmit = async (event: React.FormEvent) => {
+	const handleLogin = async (event: React.FormEvent) => {
 		event.preventDefault();
 		setError(null);
 
@@ -50,7 +57,9 @@ export default function LogInForm() {
 			if (response.status === 200) {
 				const data = response.data;
 				localStorage.setItem("token", data.token);
+				localStorage.setItem("user", JSON.stringify(data.user));
 				setUser(data.user);
+				navigate("/");
 			} else {
 				setError("Login failed. Please check your credentials.");
 			}
@@ -60,8 +69,6 @@ export default function LogInForm() {
 			} else {
 				setError("An error occurred during login. Please try again.");
 			}
-		} finally {
-			navigate("/");
 		}
 	};
 
@@ -89,7 +96,9 @@ export default function LogInForm() {
 			if (response.status === 200) {
 				const data = response.data;
 				localStorage.setItem("token", data.token);
+				localStorage.setItem("user", JSON.stringify(data.user));
 				setUser(data.user);
+				navigate("/");
 			} else {
 				setRegisterError("Registration failed. Please try again.");
 			}
@@ -101,8 +110,6 @@ export default function LogInForm() {
 					"An error occurred during registration. Please try again."
 				);
 			}
-		} finally {
-			navigate("/");
 		}
 	};
 
@@ -125,7 +132,7 @@ export default function LogInForm() {
 					/>
 				</Helmet>
 			)}
-			<div className="mt-[76px] flex flex-col h-[700px] items-center bg-white rounded-[50px] px-[130px] py-[70px]">
+			<div className="mt-[76px] flex flex-col h-fit items-center bg-white rounded-[50px] px-[130px] py-[70px]">
 				<TabContext value={tab}>
 					<Box
 						sx={{
@@ -149,10 +156,10 @@ export default function LogInForm() {
 						</TabList>
 					</Box>
 					<TabPanel
-						className="w-[500px] h-[700px]"
+						className="w-[500px] h-fit"
 						value="1"
 					>
-						<form onSubmit={handleSubmit}>
+						<form onSubmit={handleLogin}>
 							<div className="mb-3">
 								<Label htmlFor="email">Email</Label>
 								<Input
@@ -194,7 +201,7 @@ export default function LogInForm() {
 								className="mt-7 w-full bg-[#405FF2] hover:bg-[#6880f8] text-[15px] rounded-2xl py-7 font-medium"
 								type="submit"
 							>
-								Login <ExternalLink />
+								Sign in <ExternalLink />
 							</Button>
 							{error && (
 								<p className="text-red-500 mt-2">{error}</p>
@@ -202,13 +209,14 @@ export default function LogInForm() {
 						</form>
 					</TabPanel>
 					<TabPanel
-						className="w-[500px] h-[700px]"
+						className="w-[500px] h-fit"
 						value="2"
 					>
 						<form onSubmit={handleRegister}>
 							<div className="mb-4">
 								<Label htmlFor="fullName">Full Name</Label>
 								<Input
+									className="mt-2"
 									type="text"
 									id="fullName"
 									value={fullName}
@@ -216,16 +224,19 @@ export default function LogInForm() {
 										setFullName(e.target.value)
 									}
 									required
+									placeholder="Type your full name"
 								/>
 							</div>
 							<div className="mb-4">
 								<Label htmlFor="address">Address</Label>
 								<Input
+									className="mt-2"
 									type="text"
 									id="address"
 									value={address}
 									onChange={(e) => setAddress(e.target.value)}
 									required
+									placeholder="Type your address"
 								/>
 							</div>
 							<div className="mb-4">
@@ -233,6 +244,7 @@ export default function LogInForm() {
 									Phone Number
 								</Label>
 								<Input
+									className="mt-2"
 									type="text"
 									id="phoneNumber"
 									value={phoneNumber}
@@ -240,11 +252,13 @@ export default function LogInForm() {
 										setPhoneNumber(e.target.value)
 									}
 									required
+									placeholder="Type your number"
 								/>
 							</div>
 							<div className="mb-4">
 								<Label htmlFor="registerEmail">Email</Label>
 								<Input
+									className="mt-2"
 									type="email"
 									id="registerEmail"
 									value={registerEmail}
@@ -252,6 +266,7 @@ export default function LogInForm() {
 										setRegisterEmail(e.target.value)
 									}
 									required
+									placeholder="Type your email"
 								/>
 							</div>
 							<div className="mb-4">
@@ -259,6 +274,7 @@ export default function LogInForm() {
 									Password
 								</Label>
 								<Input
+									className="mt-2"
 									type="password"
 									id="registerPassword"
 									value={registerPassword}
@@ -266,6 +282,7 @@ export default function LogInForm() {
 										setRegisterPassword(e.target.value)
 									}
 									required
+									placeholder="Type your password"
 								/>
 							</div>
 							<div className="mb-4">
@@ -273,6 +290,7 @@ export default function LogInForm() {
 									Confirm Password
 								</Label>
 								<Input
+									className="mt-2"
 									type="password"
 									id="confirmPassword"
 									value={confirmPassword}
@@ -280,9 +298,15 @@ export default function LogInForm() {
 										setConfirmPassword(e.target.value)
 									}
 									required
+									placeholder="Confirm your password"
 								/>
 							</div>
-							<Button type="submit">Register</Button>
+							<Button
+								className="mt-4 w-full bg-[#405FF2] hover:bg-[#6880f8] text-[15px] rounded-2xl py-7 font-medium"
+								type="submit"
+							>
+								Register <ExternalLink />
+							</Button>
 							{registerError && (
 								<p className="text-red-500 mt-2">
 									{registerError}

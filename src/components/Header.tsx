@@ -63,11 +63,31 @@ export default function Header() {
 		);
 	}
 
-	const handleLogout = () => {
-		console.log(localStorage.getItem("token"));
-		// Remove the JWT token from local storage or cookies
-		localStorage.removeItem("token");
-		window.location.href = "/login";
+	const handleLogout = async () => {
+		try {
+			const response = await axios.post(
+				"https://localhost:7174/api/auth/logout",
+				{},
+				{
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${localStorage.getItem(
+							"token"
+						)}`,
+					},
+				}
+			);
+
+			if (response.status === 200) {
+				localStorage.removeItem("token");
+				localStorage.removeItem("user");
+				window.location.href = "/login";
+			} else {
+				console.error("Logout failed");
+			}
+		} catch (error) {
+			console.error("An error occurred during logout:", error);
+		}
 	};
 
 	return (
@@ -145,8 +165,7 @@ export default function Header() {
 							</>
 						)}
 					</Menubar>
-					{user.user?.role == "Customer" ||
-					user.user?.role == "Admin" ? (
+					{user.user?.role == "Customer" ? (
 						<Button
 							className="rounded-3xl px-8 py-4 cursor-pointer"
 							variant="secondary"
