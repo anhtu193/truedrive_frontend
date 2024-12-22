@@ -2,6 +2,7 @@ import BlogItem from "@/components/BlogItem";
 import { Blog } from "@/types/Blog";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function BlogSection() {
 	const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -42,7 +43,10 @@ export default function BlogSection() {
 				<h2 className="text-[28px] font-bold text-black-900">
 					Latest Blog Posts
 				</h2>
-				<div className="flex flex-row gap-2 mt-3 cursor-pointer">
+				<Link
+					to="/blogs"
+					className="flex flex-row gap-2 mt-3 cursor-pointer"
+				>
 					<span className="text-[15px] font-medium text-black-900">
 						View all
 					</span>
@@ -51,7 +55,7 @@ export default function BlogSection() {
 						alt="Left Arrow Image"
 						className="h-[14px]"
 					/>
-				</div>
+				</Link>
 			</div>
 			<div className="flex flex-row justify-between w-full h-fit mt-6 gap-2">
 				{blogs.map((blog) => (

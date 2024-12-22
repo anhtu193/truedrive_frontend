@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import MakeShowcase from "@/components/MakeShowcase";
 import RatingSection from "@/components/RatingSection";
+
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import axios from "axios";
 import React, { useEffect, useState } from "react";

@@ -114,11 +114,13 @@ export default function Header() {
 				</Link>
 				<div className="flex flex-row gap-6">
 					<Menubar className="gap-3 bg-transparent border-0 text-white shadow-none">
-						<MenubarMenu>
-							<MenubarTrigger className="rounded-xl px-3 py-2 cursor-pointer">
-								Home
-							</MenubarTrigger>
-						</MenubarMenu>
+						<Link to="/">
+							<MenubarMenu>
+								<MenubarTrigger className="rounded-xl px-3 py-2 cursor-pointer">
+									Home
+								</MenubarTrigger>
+							</MenubarMenu>
+						</Link>
 						<MenubarMenu>
 							<MenubarTrigger className="rounded-xl px-3 py-2 cursor-pointer">
 								Listing <ChevronDown className="h-4 w-4 ms-1" />{" "}
@@ -199,7 +201,7 @@ export default function Header() {
 							className="rounded-3xl px-8 py-4 cursor-pointer"
 							variant="secondary"
 							onClick={() => {
-								naviagte("/login");
+								navigate("/login");
 							}}
 						>
 							<User /> Sign in

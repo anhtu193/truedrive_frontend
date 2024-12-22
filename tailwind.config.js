@@ -3,6 +3,9 @@ module.exports = {
 	content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
 	theme: {
 		extend: {
+			zIndex: {
+				100: "100",
+			},
 			fontFamily: { dmsans: "DM Sans" },
 			borderRadius: {
 				lg: "var(--radius)",

@@ -2,6 +2,7 @@ import CarItem from "@/components/CarItem";
 import { Car } from "@/types/Car";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ExploreVehiclesSection() {
 	const [car, setCars] = useState<Car[]>([]);
@@ -41,7 +42,10 @@ export default function ExploreVehiclesSection() {
 				<h2 className="text-[28px] font-bold text-black-900">
 					Explore All Vehicles
 				</h2>
-				<div className="flex flex-row gap-2 mt-3  cursor-pointer">
+				<Link
+					to="/listing"
+					className="flex flex-row gap-2 mt-3  cursor-pointer"
+				>
 					<span className="text-[15px] font-medium text-black-900">
 						View all
 					</span>
@@ -50,7 +54,7 @@ export default function ExploreVehiclesSection() {
 						alt="Left Arrow Image"
 						className="h-[14px]"
 					/>
-				</div>
+				</Link>
 			</div>
 			<div className="flex gap-9 flex-row h-fit py-12">
 				{car.slice(0, 4).map((carItem, index) => (
