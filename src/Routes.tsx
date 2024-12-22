@@ -1,5 +1,8 @@
+import AllListing from "@/pages/AllListing";
 import BlogDetail from "@/pages/BlogDetail";
 import CarDetail from "@/pages/CarDetail";
+import ListingCatalog from "@/pages/ListingCatalog";
+import SearchResult from "@/pages/SearchResult";
 import { useRoutes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -15,6 +18,9 @@ const ProjectRoutes = () => {
 		{ path: "login", element: <Login /> },
 		{ path: "car/:id", element: <CarDetail /> },
 		{ path: "blog/:id", element: <BlogDetail /> },
+		{ path: "search", element: <SearchResult /> },
+		{ path: "listing/:id", element: <ListingCatalog /> },
+		{ path: "listing", element: <AllListing /> },
 	]);
 
 	return element;

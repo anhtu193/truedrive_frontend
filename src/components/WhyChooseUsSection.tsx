@@ -1,3 +1,7 @@
+import { Make } from "@/types/Make";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const financeOffersList = [
 	{
 		offerImage: "images/img_f1_svg_fill.svg",
@@ -26,6 +30,34 @@ const financeOffersList = [
 ];
 
 export default function WhyChooseUsSection() {
+	const [makes, setMakes] = useState<Make[]>([]);
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		async function fetchMakes() {
+			try {
+				const { data } = await axios.get(
+					"https://localhost:7174/api/Make"
+				);
+				setMakes(data);
+				console.log(data);
+			} catch (error) {
+				console.error("Error fetching make:", error);
+			} finally {
+				setIsLoading(false);
+			}
+		}
+
+		fetchMakes();
+	}, []);
+
+	if (isLoading) {
+		return (
+			<div className="flex items-center justify-center h-[60px] bg-transparent">
+				<p className="text-white text-sm">Loading...</p>
+			</div>
+		);
+	}
 	return (
 		<div className="flex flex-col w-full h-[300px] my-[30px] px-[130px]">
 			<div className="flex flex-row justify-between w-full h-fit ">

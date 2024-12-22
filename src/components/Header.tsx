@@ -21,6 +21,11 @@ export default function Header() {
 	const naviagte = useNavigate();
 	const location = useLocation();
 	const currentRoute = location.pathname;
+	const navigate = useNavigate();
+
+	const handleCatalogChange = (catalogId: number) => {
+		navigate(`/listing/${catalogId}`);
+	};
 
 	useEffect(() => {
 		async function fetchCatalogs() {
@@ -122,10 +127,22 @@ export default function Header() {
 								align="end"
 								className="-mt-1"
 							>
+								<Link to="/listing">
+									<MenubarItem>
+										<span className="text-[15px] font-medium capitalize text-white-a700">
+											Any catalog
+										</span>
+									</MenubarItem>
+								</Link>
 								{catalogs.map((catalog) => (
 									<MenubarItem
-										className="flex flex-row items-center"
 										key={catalog.catalogId}
+										className="flex flex-row items-center"
+										onClick={() =>
+											handleCatalogChange(
+												catalog.catalogId
+											)
+										}
 									>
 										<img
 											src={catalog.illustration}
