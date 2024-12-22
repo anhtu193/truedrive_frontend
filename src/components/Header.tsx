@@ -177,9 +177,13 @@ export default function Header() {
 								<MenubarMenu>
 									<MenubarTrigger>Wishlist</MenubarTrigger>
 								</MenubarMenu>
-								<MenubarMenu>
-									<MenubarTrigger>Appointment</MenubarTrigger>
-								</MenubarMenu>
+								<Link to="/my-appointment">
+									<MenubarMenu>
+										<MenubarTrigger>
+											Appointment
+										</MenubarTrigger>
+									</MenubarMenu>
+								</Link>
 							</>
 						)}
 					</Menubar>
