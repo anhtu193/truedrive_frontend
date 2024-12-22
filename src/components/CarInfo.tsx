@@ -339,11 +339,13 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 				isDialogOpen={isConsultDialogOpen}
 				setIsDialogOpen={setIsConsultDialogOpen}
 				purpose="Consulting Session"
+				carId={car?.carId}
 			/>
 			<AppointmentForm
 				isDialogOpen={isTestDriveDialogOpen}
 				setIsDialogOpen={setIsTestDriveDialogOpen}
 				purpose="Test Drive"
+				carId={car?.carId}
 			/>
 		</>
 	);

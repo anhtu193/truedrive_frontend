@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useUser } from "@/context/UserContext";
+import { toast } from "@/hooks/use-toast";
 import { cn, generateTimeOptions } from "@/lib/utils";
 import { Showroom } from "@/types/Showroom";
 import axios from "axios";
@@ -35,12 +36,14 @@ interface AppointmentFormProps {
 	isDialogOpen: boolean;
 	setIsDialogOpen: (isOpen: boolean) => void;
 	purpose: string;
+	carId: number | undefined;
 }
 
 export default function AppointmentForm({
 	isDialogOpen,
 	setIsDialogOpen,
 	purpose,
+	carId,
 }: AppointmentFormProps) {
 	const user = useUser();
 	const [showrooms, setShowrooms] = useState<Showroom[]>([]);
@@ -74,6 +77,47 @@ export default function AppointmentForm({
 		setSelectedTime("");
 		setNote("");
 		setDate(undefined);
+	};
+
+	const handleSubmitForm = async () => {
+		if (!date || !selectedTime || !selectedShowroom) {
+			alert("Please fill in all required fields.");
+			return;
+		}
+
+		const formattedDate = format(date, "MMM dd yyyy");
+
+		const appointmentData = {
+			customerId: user.user?.userId,
+			carId: carId,
+			date: formattedDate,
+			time: selectedTime,
+			showroom: selectedShowroom,
+			status: "Scheduled",
+			purpose:
+				purpose === "Consulting Session" ? "Consulting" : "Test Drive",
+			note: note,
+		};
+
+		try {
+			const response = await axios.post(
+				"https://localhost:7174/api/Appointment",
+				appointmentData
+			);
+
+			if (response.status === 201) {
+				handleClose();
+				toast({
+					title: "Appointment scheduled successfully!",
+				});
+			} else {
+				console.log(appointmentData);
+				alert("Failed to schedule appointment.");
+			}
+		} catch (error) {
+			console.error("Error scheduling appointment:", error);
+			alert("An error occurred while scheduling the appointment.");
+		}
 	};
 
 	return (
@@ -230,8 +274,13 @@ export default function AppointmentForm({
 						</div>
 					</div>
 				</div>
-				<DialogFooter>
-					<Button onClick={handleClose}>Close</Button>
+				<DialogFooter className="flex justify-center">
+					<Button
+						className="bg-[#2563EB] hover:bg-[#5083f2] px-14 py-6 rounded-2xl"
+						onClick={handleSubmitForm}
+					>
+						Schedule
+					</Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

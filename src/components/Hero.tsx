@@ -58,8 +58,7 @@ export default function Hero() {
 	const handleSearch = async () => {
 		if (query === "") {
 			toast({
-				title: "Uh oh! Something went wrong.",
-				description: "Please type some thing to start searching!",
+				title: "Please type some thing to start searching!",
 			});
 		} else {
 			try {
