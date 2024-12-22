@@ -165,16 +165,13 @@ export default function Header() {
 								</MenubarTrigger>
 							</MenubarMenu>
 						</Link>
-						<MenubarMenu>
-							<MenubarTrigger className="rounded-xl px-3 py-2 cursor-pointer">
-								About
-							</MenubarTrigger>
-						</MenubarMenu>
-						<MenubarMenu>
-							<MenubarTrigger className="rounded-xl px-3 py-2 cursor-pointer">
-								Contact
-							</MenubarTrigger>
-						</MenubarMenu>
+						<Link to="/compare">
+							<MenubarMenu>
+								<MenubarTrigger className="rounded-xl px-3 py-2 cursor-pointer">
+									Compare
+								</MenubarTrigger>
+							</MenubarMenu>
+						</Link>
 						{user.user?.role == "Customer" && (
 							<>
 								<MenubarMenu>

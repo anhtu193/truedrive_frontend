@@ -2,6 +2,7 @@ import AllListing from "@/pages/AllListing";
 import Blog from "@/pages/Blog";
 import BlogDetail from "@/pages/BlogDetail";
 import CarDetail from "@/pages/CarDetail";
+import Compare from "@/pages/Compare";
 import ListingCatalog from "@/pages/ListingCatalog";
 import SearchResult from "@/pages/SearchResult";
 import { useRoutes } from "react-router-dom";
@@ -23,6 +24,7 @@ const ProjectRoutes = () => {
 		{ path: "listing/:id", element: <ListingCatalog /> },
 		{ path: "listing", element: <AllListing /> },
 		{ path: "blogs", element: <Blog /> },
+		{ path: "compare", element: <Compare /> },
 	]);
 
 	return element;

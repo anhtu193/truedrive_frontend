@@ -265,7 +265,13 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 
 								<Button
 									onClick={() => {
-										setIsConsultDialogOpen(true);
+										if (user.user?.role != "Customer") {
+											toast({
+												title: "You need to sign in first!",
+											});
+										} else {
+											setIsConsultDialogOpen(true);
+										}
 									}}
 									className="w-full bg-[#405FF2] hover:bg-[#6880f8] text-[15px] mt-3 rounded-2xl py-7 font-medium"
 								>
@@ -273,7 +279,13 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 								</Button>
 								<Button
 									onClick={() => {
-										setIsTestDriveDialogOpen(true);
+										if (user.user?.role != "Customer") {
+											toast({
+												title: "You need to sign in first!",
+											});
+										} else {
+											setIsTestDriveDialogOpen(true);
+										}
 									}}
 									variant="outline"
 									className="w-full border-gray-600 text-[15px] mt-3 rounded-2xl py-7 font-medium"
