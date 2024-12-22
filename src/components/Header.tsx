@@ -156,11 +156,13 @@ export default function Header() {
 								))}
 							</MenubarContent>
 						</MenubarMenu>
-						<MenubarMenu>
-							<MenubarTrigger className="rounded-xl px-3 py-2 cursor-pointer">
-								Blog
-							</MenubarTrigger>
-						</MenubarMenu>
+						<Link to="/blogs">
+							<MenubarMenu>
+								<MenubarTrigger className="rounded-xl px-3 py-2 cursor-pointer">
+									Blog
+								</MenubarTrigger>
+							</MenubarMenu>
+						</Link>
 						<MenubarMenu>
 							<MenubarTrigger className="rounded-xl px-3 py-2 cursor-pointer">
 								About

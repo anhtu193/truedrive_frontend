@@ -19,7 +19,7 @@ export default function BlogItem({ blog }: { blog: Blog }) {
 					<img
 						src={blog.image}
 						alt={blog.title}
-						className="object-contain  rounded-xl"
+						className="object-cover h-[267px] rounded-xl"
 					/>
 					<p className="text-base mt-3">
 						{formatDate(blog.datePublish)}

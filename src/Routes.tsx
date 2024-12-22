@@ -1,4 +1,5 @@
 import AllListing from "@/pages/AllListing";
+import Blog from "@/pages/Blog";
 import BlogDetail from "@/pages/BlogDetail";
 import CarDetail from "@/pages/CarDetail";
 import ListingCatalog from "@/pages/ListingCatalog";
@@ -21,6 +22,7 @@ const ProjectRoutes = () => {
 		{ path: "search", element: <SearchResult /> },
 		{ path: "listing/:id", element: <ListingCatalog /> },
 		{ path: "listing", element: <AllListing /> },
+		{ path: "blogs", element: <Blog /> },
 	]);
 
 	return element;
