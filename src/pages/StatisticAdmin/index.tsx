@@ -1,6 +1,7 @@
 import AdminHeader from "@/components/AdminHeader";
 import AdminNavigation from "@/components/AdminNavigation";
 import React, { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet";
 
 export default function StatisticAdmin() {
 	const [height, setHeight] = useState<string>("auto");
@@ -14,6 +15,13 @@ export default function StatisticAdmin() {
 
 	return (
 		<>
+			<Helmet>
+				<title>Statistic</title>
+				<meta
+					name="description"
+					content="Discover your perfect car with our extensive listings. From SUVs to Sedans, find the best deals on the latest models and premium makes like Audi, BMW, and Ford. Start your search now!"
+				/>
+			</Helmet>
 			<div className="flex flex-col">
 				<AdminHeader />
 				<div className="flex flex-row h-fit bg-[#DEDEDE]">

@@ -5,8 +5,10 @@ import Blog from "@/pages/Blog";
 import BlogDetail from "@/pages/BlogDetail";
 import CarAdmin from "@/pages/CarAdmin";
 import CarDetail from "@/pages/CarDetail";
+import CarDetailAdmin from "@/pages/CarDetailAdmin";
 import Compare from "@/pages/Compare";
 import CustomerAppointment from "@/pages/CustomerAppointment";
+import EditCarAdmin from "@/pages/EditCarAdmin";
 import ListingCatalog from "@/pages/ListingCatalog";
 import PolicyAdmin from "@/pages/PolicyAdmin";
 import SearchResult from "@/pages/SearchResult";
@@ -41,6 +43,8 @@ const ProjectRoutes = () => {
 
 	const adminRoutes = [
 		{ path: "/", element: <CarAdmin /> },
+		{ path: "/car/:id", element: <CarDetailAdmin /> },
+		{ path: "/car/edit/:id", element: <EditCarAdmin /> },
 		{ path: "policy", element: <PolicyAdmin /> },
 		{ path: "transaction", element: <TransactionAdmin /> },
 		{ path: "statistic", element: <StatisticAdmin /> },
