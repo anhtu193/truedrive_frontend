@@ -8,7 +8,7 @@ import axios from "axios";
 import { Search } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Compare() {
 	const [cars, setCars] = useState<Car[]>([]);
@@ -24,6 +24,7 @@ export default function Compare() {
 	const [secondCarCatalog, setSecondCarCatalog] = useState("");
 	const comparisonRef = useRef<HTMLDivElement>(null);
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	useEffect(() => {
 		async function fetchCars() {
@@ -43,6 +44,12 @@ export default function Compare() {
 
 		fetchCars();
 	}, []);
+
+	useEffect(() => {
+		if (location.state && location.state.searchQueryFirst) {
+			setSearchQueryFirst(location.state.searchQueryFirst);
+		}
+	}, [location.state]);
 
 	useEffect(() => {
 		if (openComparison && comparisonRef.current) {

@@ -369,6 +369,13 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 									variant="outline"
 									size="icon"
 									className="rounded-full ms-3"
+									onClick={() => {
+										navigate("/compare", {
+											state: {
+												searchQueryFirst: car?.model,
+											},
+										});
+									}}
 								>
 									<BookCopy />
 								</Button>
