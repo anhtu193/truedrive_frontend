@@ -6,6 +6,7 @@ import Compare from "@/pages/Compare";
 import CustomerAppointment from "@/pages/CustomerAppointment";
 import ListingCatalog from "@/pages/ListingCatalog";
 import SearchResult from "@/pages/SearchResult";
+import Wishlist from "@/pages/Wishlist";
 import { useRoutes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -27,6 +28,7 @@ const ProjectRoutes = () => {
 		{ path: "blogs", element: <Blog /> },
 		{ path: "compare", element: <Compare /> },
 		{ path: "my-appointment", element: <CustomerAppointment /> },
+		{ path: "wishlist", element: <Wishlist /> },
 	]);
 
 	return element;

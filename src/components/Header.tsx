@@ -174,9 +174,13 @@ export default function Header() {
 						</Link>
 						{user.user?.role == "Customer" && (
 							<>
-								<MenubarMenu>
-									<MenubarTrigger>Wishlist</MenubarTrigger>
-								</MenubarMenu>
+								<Link to="/wishlist">
+									<MenubarMenu>
+										<MenubarTrigger>
+											Wishlist
+										</MenubarTrigger>
+									</MenubarMenu>
+								</Link>
 								<Link to="/my-appointment">
 									<MenubarMenu>
 										<MenubarTrigger>

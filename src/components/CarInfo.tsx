@@ -52,6 +52,7 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 	const [make, setMake] = useState("");
 	const [isConsultDialogOpen, setIsConsultDialogOpen] = useState(false);
 	const [isTestDriveDialogOpen, setIsTestDriveDialogOpen] = useState(false);
+	const [isRemoveDialogOpen, setIsRemoveDialogOpen] = useState(false);
 	const navigate = useNavigate();
 	const user = useUser();
 
@@ -83,31 +84,60 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 		}
 	}
 
+	async function checkIfCarIsInWishlist() {
+		try {
+			const response = await axios.get(
+				`https://localhost:7174/api/Wishlist/exists?userId=${user.user?.userId}&carId=${car?.carId}`
+			);
+			setSaved(response.data);
+		} catch (error) {
+			console.error("Error checking wishlist status:", error);
+		}
+	}
+
 	useEffect(() => {
 		fetchCarCatalog();
 		fetchCarMake();
+		checkIfCarIsInWishlist();
 	}, []);
 
-	// const handleConsult = async () => {
-	// 	if (user.user?.role !== "Customer") {
-	// 		toast({
-	// 			title: "User not found!",
-	// 			description: "Please sign in to continue!",
-	// 			action: (
-	// 				<ToastAction
-	// 					altText="Sign in"
-	// 					onClick={() => {
-	// 						navigate("/login");
-	// 					}}
-	// 				>
-	// 					Sign in
-	// 				</ToastAction>
-	// 			),
-	// 		});
-	// 	} else {
-	// 		setIsConsultDialogOpen(true);
-	// 	}
-	// };
+	const addToWishlist = async () => {
+		try {
+			await axios.post(
+				`https://localhost:7174/api/Wishlist/add?userId=${user.user?.userId}&carId=${car?.carId}`
+			);
+			setSaved(true);
+			toast({
+				title: "Added to wishlist",
+				description: `${car?.model} has been added to your wishlist.`,
+			});
+		} catch (error) {
+			console.error("Error adding to wishlist:", error);
+		}
+	};
+
+	const removeFromWishlist = async () => {
+		try {
+			await axios.delete(
+				`https://localhost:7174/api/Wishlist/remove?userId=${user.user?.userId}&carId=${car?.carId}`
+			);
+			setSaved(false);
+			toast({
+				title: "Removed from wishlist",
+				description: `${car?.model} has been removed from your wishlist.`,
+			});
+		} catch (error) {
+			console.error("Error removing from wishlist:", error);
+		}
+	};
+
+	const handleSave = (saved: boolean) => {
+		if (!saved) {
+			addToWishlist();
+		} else {
+			setIsRemoveDialogOpen(true);
+		}
+	};
 
 	if (isLoading) {
 		return (
@@ -318,7 +348,7 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 									className="rounded-full ms-3"
 									onClick={() => {
 										setSaved(!saved);
-										// handleSave(saved);
+										handleSave(saved);
 									}}
 								>
 									<Bookmark
@@ -359,6 +389,37 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 				purpose="Test Drive"
 				carId={car?.carId}
 			/>
+			<Dialog
+				open={isRemoveDialogOpen}
+				onOpenChange={setIsRemoveDialogOpen}
+			>
+				<DialogContent>
+					<DialogHeader>
+						<DialogTitle>Remove from Wishlist</DialogTitle>
+					</DialogHeader>
+					<p>
+						Are you sure you want to remove this car from your
+						wishlist?
+					</p>
+					<DialogFooter>
+						<Button
+							variant="outline"
+							onClick={() => setIsRemoveDialogOpen(false)}
+						>
+							No
+						</Button>
+						<Button
+							variant="destructive"
+							onClick={() => {
+								removeFromWishlist();
+								setIsRemoveDialogOpen(false);
+							}}
+						>
+							Yes, Remove
+						</Button>
+					</DialogFooter>
+				</DialogContent>
+			</Dialog>
 		</>
 	);
 }
