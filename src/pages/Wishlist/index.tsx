@@ -13,7 +13,7 @@ export default function Wishlist() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		async function fetchUserWishlist() {
+		async function fetchCustomerWishlist() {
 			try {
 				const { data } = await axios.get(
 					`https://localhost:7174/api/Wishlist/user/${user.user?.userId}`
@@ -28,7 +28,7 @@ export default function Wishlist() {
 			}
 		}
 
-		fetchUserWishlist();
+		fetchCustomerWishlist();
 	}, []);
 
 	const handleRemove = (carId: number) => {

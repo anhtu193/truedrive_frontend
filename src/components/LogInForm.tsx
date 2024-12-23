@@ -125,7 +125,7 @@ export default function LogInForm() {
 				</Helmet>
 			) : (
 				<Helmet>
-					<title>Register</title>
+					<title>Sign up</title>
 					<meta
 						name="description"
 						content="Discover your perfect car with our extensive listings. From SUVs to Sedans, find the best deals on the latest models and premium makes like Audi, BMW, and Ford. Start your search now!"
@@ -150,7 +150,7 @@ export default function LogInForm() {
 								value="1"
 							/>
 							<Tab
-								label="Register"
+								label="Sign Up"
 								value="2"
 							/>
 						</TabList>
@@ -305,7 +305,7 @@ export default function LogInForm() {
 								className="mt-4 w-full bg-[#405FF2] hover:bg-[#6880f8] text-[15px] rounded-2xl py-7 font-medium"
 								type="submit"
 							>
-								Register <ExternalLink />
+								Sign up <ExternalLink />
 							</Button>
 							{registerError && (
 								<p className="text-red-500 mt-2">
