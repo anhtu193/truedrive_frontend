@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-const AdminNavigation = () => {
+interface AdminNavigationProps {
+	height: string;
+}
+
+const AdminNavigation = ({ height }: AdminNavigationProps) => {
 	const navItems = [
 		{
 			name: "Car",
@@ -29,7 +33,7 @@ const AdminNavigation = () => {
 		},
 		{
 			name: "Policy",
-			path: "/admin/policy",
+			path: "/policy",
 			iconActive: "images/policy.svg",
 			icon: "images/policy_unactive.svg",
 		},
@@ -38,7 +42,10 @@ const AdminNavigation = () => {
 	const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
 	return (
-		<div className="mt-1 flex flex-col w-[300px] h-full bg-white">
+		<div
+			className={`mt-1 flex flex-col w-[300px] bg-white`}
+			style={{ height }}
+		>
 			<h2 className="ms-5 my-4 font-semibold tracking-widest text-[12px] text-black">
 				MAIN MENU
 			</h2>

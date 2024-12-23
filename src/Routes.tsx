@@ -1,5 +1,6 @@
 import { useUser } from "@/context/UserContext";
 import AllListing from "@/pages/AllListing";
+import AppointmentAdmin from "@/pages/AppointmentAdmin";
 import Blog from "@/pages/Blog";
 import BlogDetail from "@/pages/BlogDetail";
 import CarAdmin from "@/pages/CarAdmin";
@@ -7,7 +8,10 @@ import CarDetail from "@/pages/CarDetail";
 import Compare from "@/pages/Compare";
 import CustomerAppointment from "@/pages/CustomerAppointment";
 import ListingCatalog from "@/pages/ListingCatalog";
+import PolicyAdmin from "@/pages/PolicyAdmin";
 import SearchResult from "@/pages/SearchResult";
+import StatisticAdmin from "@/pages/StatisticAdmin";
+import TransactionAdmin from "@/pages/TransactionAdmin";
 import Wishlist from "@/pages/Wishlist";
 import { useRoutes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -35,7 +39,13 @@ const ProjectRoutes = () => {
 		{ path: "wishlist", element: <Wishlist /> },
 	];
 
-	const adminRoutes = [{ path: "/", element: <CarAdmin /> }];
+	const adminRoutes = [
+		{ path: "/", element: <CarAdmin /> },
+		{ path: "policy", element: <PolicyAdmin /> },
+		{ path: "transaction", element: <TransactionAdmin /> },
+		{ path: "statistic", element: <StatisticAdmin /> },
+		{ path: "appointment", element: <AppointmentAdmin /> },
+	];
 
 	const routes = user?.role === "Admin" ? adminRoutes : customerRoutes;
 	const element = useRoutes(routes);

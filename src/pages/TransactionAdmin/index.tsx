@@ -2,7 +2,7 @@ import AdminHeader from "@/components/AdminHeader";
 import AdminNavigation from "@/components/AdminNavigation";
 import React, { useEffect, useRef, useState } from "react";
 
-export default function CarAdmin() {
+export default function TransactionAdmin() {
 	const [height, setHeight] = useState<string>("auto");
 	const contentRef = useRef<HTMLDivElement>(null);
 
@@ -22,7 +22,7 @@ export default function CarAdmin() {
 						ref={contentRef}
 						className="w-full bg-white px-12 py-10 mx-6 my-6 rounded-2xl h-[700px]"
 					>
-						<h1 className="text-[30px] font-bold">Cars</h1>
+						<h1 className="text-[30px] font-bold">Transaction</h1>
 					</div>
 				</div>
 			</div>
