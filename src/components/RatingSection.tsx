@@ -61,7 +61,7 @@ export default function RatingSection() {
 	const handleSubmitFeedback = async () => {
 		if (!value || !reviewText) {
 			toast({
-				title: "Please fill in all fields.",
+				title: "Please fill in all the information!",
 			});
 			return;
 		}
@@ -80,7 +80,7 @@ export default function RatingSection() {
 
 			if (response.status === 201) {
 				toast({
-					title: "Feedback submitted successfully!",
+					title: "Thank you for your feedback!",
 				});
 				setFeedbacks([...feedbacks, response.data]);
 				setValue(2.5);
@@ -88,7 +88,6 @@ export default function RatingSection() {
 			} else {
 				toast({
 					title: "Failed to submit feedback.",
-					description: "Thanks for your feedback about us.",
 				});
 			}
 		} catch (error) {

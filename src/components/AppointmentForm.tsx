@@ -82,7 +82,7 @@ export default function AppointmentForm({
 	const handleSubmitForm = async () => {
 		if (!date || !selectedTime || !selectedShowroom) {
 			toast({
-				title: "Please fill in all required fields.",
+				title: "Please fill in all the information!",
 			});
 			return;
 		}
@@ -122,7 +122,7 @@ export default function AppointmentForm({
 			if (response.status === 201) {
 				handleClose();
 				toast({
-					title: "Appointment scheduled successfully!",
+					title: "Appointment successfully scheduled!",
 				});
 			} else {
 				console.log(appointmentData);

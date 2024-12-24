@@ -108,7 +108,7 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 			);
 			setSaved(true);
 			toast({
-				title: "Added to wishlist",
+				title: "Added to your wishlist!",
 				description: `${car?.model} has been added to your wishlist.`,
 			});
 		} catch (error) {
@@ -123,7 +123,7 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 			);
 			setSaved(false);
 			toast({
-				title: "Removed from wishlist",
+				title: "Model successfully removed from your wishlist",
 				description: `${car?.model} has been removed from your wishlist.`,
 			});
 		} catch (error) {
@@ -297,7 +297,7 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 									onClick={() => {
 										if (user.user?.role != "Customer") {
 											toast({
-												title: "You need to sign in first!",
+												title: "You need to sign in to perform this action.",
 											});
 										} else {
 											setIsConsultDialogOpen(true);
@@ -311,7 +311,7 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 									onClick={() => {
 										if (user.user?.role != "Customer") {
 											toast({
-												title: "You need to sign in first!",
+												title: "You need to sign in to perform this action.",
 											});
 										} else {
 											setIsTestDriveDialogOpen(true);

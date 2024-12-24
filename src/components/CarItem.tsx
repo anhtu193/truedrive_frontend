@@ -74,7 +74,7 @@ export default function CarItem({
 			);
 			setSaved(true);
 			toast({
-				title: "Added to wishlist",
+				title: "Added to your wishlist!",
 				description: `${car.model} has been added to your wishlist.`,
 			});
 		} catch (error) {
@@ -89,7 +89,7 @@ export default function CarItem({
 			);
 			setSaved(false);
 			toast({
-				title: "Removed from wishlist",
+				title: "Model successfully removed from your wishlist",
 				description: `${car.model} has been removed from your wishlist.`,
 			});
 			if (onRemove) {
