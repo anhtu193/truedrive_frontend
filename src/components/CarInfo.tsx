@@ -132,10 +132,15 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 	};
 
 	const handleSave = (saved: boolean) => {
-		if (!saved) {
-			addToWishlist();
+		if (user.user?.role !== "Customer") {
+			toast({ title: "You need to sign in to perform this action." });
 		} else {
-			setIsRemoveDialogOpen(true);
+			if (!saved) {
+				setSaved(!saved);
+				addToWishlist();
+			} else {
+				setIsRemoveDialogOpen(true);
+			}
 		}
 	};
 
