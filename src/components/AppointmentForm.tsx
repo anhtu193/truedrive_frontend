@@ -28,7 +28,7 @@ import { toast } from "@/hooks/use-toast";
 import { cn, generateTimeOptions } from "@/lib/utils";
 import { Showroom } from "@/types/Showroom";
 import axios from "axios";
-import { format } from "date-fns";
+import { addDays, format, isBefore } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
@@ -81,7 +81,21 @@ export default function AppointmentForm({
 
 	const handleSubmitForm = async () => {
 		if (!date || !selectedTime || !selectedShowroom) {
-			alert("Please fill in all required fields.");
+			toast({
+				title: "Please fill in all required fields.",
+			});
+			return;
+		}
+
+		const today = new Date();
+		const minDate = addDays(today, 2);
+
+		if (isBefore(date, minDate)) {
+			toast({
+				title: "Invalid date",
+				description:
+					"The scheduled date must be at least 2 days from today.",
+			});
 			return;
 		}
 
@@ -112,11 +126,15 @@ export default function AppointmentForm({
 				});
 			} else {
 				console.log(appointmentData);
-				alert("Failed to schedule appointment.");
+				toast({
+					title: "Failed to schedule appointment.",
+				});
 			}
 		} catch (error) {
 			console.error("Error scheduling appointment:", error);
-			alert("An error occurred while scheduling the appointment.");
+			toast({
+				title: "An error occurred while scheduling the appointment.",
+			});
 		}
 	};
 
