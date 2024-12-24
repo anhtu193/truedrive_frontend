@@ -101,10 +101,15 @@ export default function CarItem({
 	};
 
 	const handleSave = (saved: boolean) => {
-		if (!saved) {
-			addToWishlist();
+		if (user.user?.role !== "Customer") {
+			toast({ title: "You need to sign in to perform this action." });
 		} else {
-			setIsRemoveDialogOpen(true);
+			if (!saved) {
+				setSaved(!saved);
+				addToWishlist();
+			} else {
+				setIsRemoveDialogOpen(true);
+			}
 		}
 	};
 
@@ -130,7 +135,7 @@ export default function CarItem({
 						<button
 							onClick={(e) => {
 								e.preventDefault();
-								setSaved(!saved);
+
 								handleSave(saved);
 							}}
 							className="absolute top-4 right-4 bg-white p-2 rounded-full shadow"
