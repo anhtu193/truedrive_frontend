@@ -30,7 +30,7 @@ export default function ListingCatalog() {
 			}
 		}
 
-		async function fetchCatalogName() {
+		async function fetchCarCatalog() {
 			try {
 				const { data } = await axios.get(
 					`https://localhost:7174/api/Catalog/${id}`
@@ -45,7 +45,7 @@ export default function ListingCatalog() {
 			}
 		}
 		fetchCars();
-		fetchCatalogName();
+		fetchCarCatalog();
 	}, [id]);
 
 	if (isLoading) {

@@ -11,7 +11,7 @@ export default function CarDetail() {
 	const [car, setCar] = useState<Car>();
 	const [isLoading, setIsLoading] = useState(true);
 	const { id } = useParams();
-	async function fetchCar() {
+	async function getCarById() {
 		try {
 			const { data } = await axios.get(
 				`https://localhost:7174/api/Car/${id}`
@@ -27,7 +27,7 @@ export default function CarDetail() {
 	}
 
 	useEffect(() => {
-		fetchCar();
+		getCarById();
 	}, []);
 
 	if (isLoading) {

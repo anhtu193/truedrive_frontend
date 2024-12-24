@@ -24,7 +24,7 @@ export default function CarDetailAdmin() {
 		}
 	}, []);
 
-	async function fetchCar() {
+	async function getCarById() {
 		try {
 			const { data } = await axios.get(
 				`https://localhost:7174/api/Car/${id}`
@@ -70,7 +70,7 @@ export default function CarDetailAdmin() {
 	}
 
 	useEffect(() => {
-		fetchCar();
+		getCarById();
 	}, []);
 
 	if (isLoading) {
