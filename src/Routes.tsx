@@ -10,8 +10,10 @@ import CarDetailAdmin from "@/pages/CarDetailAdmin";
 import Compare from "@/pages/Compare";
 import CustomerAppointment from "@/pages/CustomerAppointment";
 import EditCarAdmin from "@/pages/EditCarAdmin";
+import EditPolicyAdmin from "@/pages/EditPolicyAdmin";
 import ListingCatalog from "@/pages/ListingCatalog";
 import PolicyAdmin from "@/pages/PolicyAdmin";
+import PolicyDetailAdmin from "@/pages/PolicyDetailAdmin";
 import SearchResult from "@/pages/SearchResult";
 import StatisticAdmin from "@/pages/StatisticAdmin";
 import TransactionAdmin from "@/pages/TransactionAdmin";
@@ -44,9 +46,11 @@ const ProjectRoutes = () => {
 
 	const adminRoutes = [
 		{ path: "/", element: <CarAdmin /> },
-		{ path: "/car/:id", element: <CarDetailAdmin /> },
-		{ path: "/car/edit/:id", element: <EditCarAdmin /> },
+		{ path: "car/:id", element: <CarDetailAdmin /> },
+		{ path: "car/edit/:id", element: <EditCarAdmin /> },
 		{ path: "policy", element: <PolicyAdmin /> },
+		{ path: "policy/:id", element: <PolicyDetailAdmin /> },
+		{ path: "policy/edit/:id", element: <EditPolicyAdmin /> },
 		{ path: "transaction", element: <TransactionAdmin /> },
 		{ path: "statistic", element: <StatisticAdmin /> },
 		{ path: "appointment", element: <AppointmentAdmin /> },

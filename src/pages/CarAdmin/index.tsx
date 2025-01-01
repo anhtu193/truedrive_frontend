@@ -275,7 +275,7 @@ export default function CarAdmin() {
 					<p className="text-center">
 						Are you sure you want to delete this car?
 						<br />
-						You can change car status into{" "}
+						You can change this car status into{" "}
 						<span className="font-semibold text-[#808080]">
 							Not Available
 						</span>{" "}

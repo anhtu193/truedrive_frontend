@@ -298,40 +298,110 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 									${car?.price.toLocaleString("en-US")}
 								</p>
 
-								<Button
-									onClick={() => {
-										if (user.user?.role != "Customer") {
-											toast({
-												title: "You need to sign in to perform this action.",
-											});
-										} else {
-											setIsConsultDialogOpen(true);
-										}
-									}}
-									className="w-full bg-[#405FF2] hover:bg-[#6880f8] text-[15px] mt-3 rounded-2xl py-7 font-medium"
-								>
-									<Tag /> Schedule a Consulting Session
-								</Button>
-								<Button
-									onClick={() => {
-										if (user.user?.role != "Customer") {
-											toast({
-												title: "You need to sign in to perform this action.",
-											});
-										} else {
-											setIsTestDriveDialogOpen(true);
-										}
-									}}
-									variant="outline"
-									className="w-full border-gray-600 text-[15px] mt-3 rounded-2xl py-7 font-medium"
-								>
-									<img
-										src="/images/img_drivetype.svg"
-										alt="drivetype"
-										className="inline mb-1"
-									/>{" "}
-									Schedule a Test Drive
-								</Button>
+								{car?.status === "Available" ? (
+									<>
+										<Button
+											onClick={() => {
+												if (
+													user.user?.role !=
+													"Customer"
+												) {
+													toast({
+														title: "You need to sign in to perform this action.",
+													});
+												} else {
+													setIsConsultDialogOpen(
+														true
+													);
+												}
+											}}
+											className="w-full bg-[#405FF2] hover:bg-[#6880f8] text-[15px] mt-3 rounded-2xl py-7 font-medium"
+										>
+											<Tag /> Schedule a Consulting
+											Session
+										</Button>
+										<Button
+											onClick={() => {
+												if (
+													user.user?.role !=
+													"Customer"
+												) {
+													toast({
+														title: "You need to sign in to perform this action.",
+													});
+												} else {
+													setIsTestDriveDialogOpen(
+														true
+													);
+												}
+											}}
+											variant="outline"
+											className="w-full border-gray-600 text-[15px] mt-3 rounded-2xl py-7 font-medium"
+										>
+											<img
+												src="/images/img_drivetype.svg"
+												alt="drivetype"
+												className="inline mb-1"
+											/>{" "}
+											Schedule a Test Drive
+										</Button>
+									</>
+								) : (
+									<>
+										{" "}
+										<Button
+											disabled
+											onClick={() => {
+												if (
+													user.user?.role !=
+													"Customer"
+												) {
+													toast({
+														title: "You need to sign in to perform this action.",
+													});
+												} else {
+													setIsConsultDialogOpen(
+														true
+													);
+												}
+											}}
+											className="w-full bg-[#405FF2] hover:bg-[#6880f8] text-[15px] mt-3 rounded-2xl py-7 font-medium"
+										>
+											<Tag /> Schedule a Consulting
+											Session
+										</Button>
+										<Button
+											disabled
+											onClick={() => {
+												if (
+													user.user?.role !=
+													"Customer"
+												) {
+													toast({
+														title: "You need to sign in to perform this action.",
+													});
+												} else {
+													setIsTestDriveDialogOpen(
+														true
+													);
+												}
+											}}
+											variant="outline"
+											className="w-full border-gray-600 text-[15px] mt-3 rounded-2xl py-7 font-medium"
+										>
+											<img
+												src="/images/img_drivetype.svg"
+												alt="drivetype"
+												className="inline mb-1"
+											/>{" "}
+											Schedule a Test Drive
+										</Button>
+										<p className="font-medium self-center mt-4 ms-6">
+											This car is not available at the
+											moment!
+										</p>
+									</>
+								)}
 							</CardContent>
 						</Card>
 						<div className="flex flex-row gap-4 mt-4">

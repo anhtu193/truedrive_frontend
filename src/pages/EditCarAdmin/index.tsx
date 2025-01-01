@@ -297,7 +297,7 @@ export default function EditCarAdmin() {
 										className="w-fit border-[#2563EB] text-[#2563EB] hover:text-[#2563EB] border-2 px-8 py-6 rounded-2xl"
 										variant="outline"
 										onClick={() => {
-											navigate("/");
+											navigate(-1);
 										}}
 									>
 										Cancel
