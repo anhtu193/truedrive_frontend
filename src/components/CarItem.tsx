@@ -167,7 +167,7 @@ export default function CarItem({
 					<CardContent className="flex justify-between items-center text-sm text-gray-600 mt-3 -mb-3">
 						<div className="flex flex-col items-center mt-1 w-[77px] ">
 							<img
-								src="images/img_car.svg"
+								src="/images/img_car.svg"
 								alt="Feature Icon"
 								className="h-[18px] mb-1"
 							/>
@@ -175,7 +175,7 @@ export default function CarItem({
 						</div>
 						<div className="flex flex-col items-center w-[77px] ">
 							<img
-								src="images/img_fuel.svg"
+								src="/images/img_fuel.svg"
 								alt="Feature Icon"
 								className="h-[18px] mb-2"
 							/>
@@ -183,7 +183,7 @@ export default function CarItem({
 						</div>
 						<div className="flex flex-col items-center w-[77px] ">
 							<img
-								src="images/img_calendar.svg"
+								src="/images/img_calendar.svg"
 								alt="Feature Icon"
 								className="h-[18px] mb-2"
 							/>

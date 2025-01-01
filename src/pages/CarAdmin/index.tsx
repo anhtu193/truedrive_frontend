@@ -2,6 +2,13 @@ import AdminHeader from "@/components/AdminHeader";
 import AdminNavigation from "@/components/AdminNavigation";
 import { Button } from "@/components/ui/button";
 import {
+	Dialog,
+	DialogContent,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+} from "@/components/ui/dialog";
+import {
 	Table,
 	TableBody,
 	TableCell,
@@ -9,6 +16,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
+import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Car } from "@/types/Car";
 import axios from "axios";
@@ -34,6 +42,44 @@ export default function CarAdmin() {
 	const [makes, setMakes] = useState<{ [key: number]: string }>({});
 	const contentRef = useRef<HTMLDivElement>(null);
 	const navigate = useNavigate();
+	const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+	const [selectedCarId, setSelectedCarId] = useState<number | null>(null);
+
+	// useEffect(() => {
+	// 	console.log(selectedCarId);
+	// }, [selectedCarId]);
+
+	const handleDelete = async () => {
+		if (selectedCarId === null) return;
+
+		try {
+			const wishlistResponse = await axios.delete(
+				`https://localhost:7174/api/Wishlist/removeCar/${selectedCarId}`
+			);
+
+			if (wishlistResponse.status === 204) {
+				const carResponse = await axios.delete(
+					`https://localhost:7174/api/Car/${selectedCarId}`
+				);
+
+				if (carResponse.status === 204) {
+					setCars((prevCars) =>
+						prevCars.filter((car) => car.carId !== selectedCarId)
+					);
+					setIsDeleteDialogOpen(false);
+					toast({ title: "Delete car successfully!" });
+				} else {
+					console.error("Failed to delete car");
+					toast({ title: "Failed to delete car!" });
+				}
+			} else {
+				console.error("Failed to remove car from wishlist");
+				toast({ title: "Failed to remove car from wishlist!" });
+			}
+		} catch (error) {
+			console.error("An error occurred while deleting the car:", error);
+		}
+	};
 
 	useEffect(() => {
 		if (contentRef.current) {
@@ -190,12 +236,10 @@ export default function CarAdmin() {
 											<Button
 												variant="outline"
 												size="icon"
-												onClick={() =>
-													console.log(
-														"Delete car",
-														car.carId
-													)
-												}
+												onClick={() => {
+													setSelectedCarId(car.carId);
+													setIsDeleteDialogOpen(true);
+												}}
 											>
 												<Trash />
 											</Button>
@@ -207,6 +251,40 @@ export default function CarAdmin() {
 					</div>
 				</div>
 			</div>
+			<Dialog
+				open={isDeleteDialogOpen}
+				onOpenChange={setIsDeleteDialogOpen}
+			>
+				<DialogContent>
+					<DialogHeader>
+						<DialogTitle>Delete Car</DialogTitle>
+					</DialogHeader>
+					<p className="text-center">
+						Are you sure you want to delete this car?
+						<br />
+						You can change car status into{" "}
+						<span className="font-semibold text-[#808080]">
+							Not Available
+						</span>{" "}
+						instead.
+					</p>
+
+					<DialogFooter>
+						<Button
+							variant="outline"
+							onClick={() => setIsDeleteDialogOpen(false)}
+						>
+							No
+						</Button>
+						<Button
+							variant="destructive"
+							onClick={handleDelete}
+						>
+							Yes, Delete
+						</Button>
+					</DialogFooter>
+				</DialogContent>
+			</Dialog>
 		</>
 	);
 }

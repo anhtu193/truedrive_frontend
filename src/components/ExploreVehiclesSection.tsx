@@ -50,7 +50,7 @@ export default function ExploreVehiclesSection() {
 						View all
 					</span>
 					<img
-						src="images/img_arrow_left.svg"
+						src="/images/img_arrow_left.svg"
 						alt="Left Arrow Image"
 						className="h-[14px]"
 					/>

@@ -352,7 +352,6 @@ export default function CarInfo({ car }: { car: Car | undefined }) {
 									size="icon"
 									className="rounded-full ms-3"
 									onClick={() => {
-										setSaved(!saved);
 										handleSave(saved);
 									}}
 								>

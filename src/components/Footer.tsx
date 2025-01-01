@@ -135,22 +135,22 @@ export default function Footer() {
 					</h4>
 					<div className="flex flex-row -ml-3">
 						<img
-							src="images/facebook.svg"
+							src="/images/facebook.svg"
 							alt="facebook"
 							className="cursor-pointer"
 						/>
 						<img
-							src="images/twitter.svg"
+							src="/images/twitter.svg"
 							alt="twitter"
 							className="cursor-pointer"
 						/>
 						<img
-							src="images/instagram.svg"
+							src="/images/instagram.svg"
 							alt="instagram"
 							className="cursor-pointer"
 						/>
 						<img
-							src="images/linkedin.svg"
+							src="/images/linkedin.svg"
 							alt="linkedin"
 							className="cursor-pointer"
 						/>

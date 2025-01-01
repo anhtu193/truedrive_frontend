@@ -193,7 +193,7 @@ export default function Compare() {
 						<div className="relative w-[570px] h-fit">
 							<div className="bg-[#2563EB] w-full h-[190px] rounded-t-2xl"></div>
 							<img
-								src="images/first_car.png"
+								src="/images/first_car.png"
 								alt="first car"
 								className="w-[85%] absolute top-2 left-11"
 							/>
@@ -232,7 +232,7 @@ export default function Compare() {
 						<div className="relative w-[570px] h-fit">
 							<div className="bg-[#2563EB] w-full h-[190px] rounded-t-2xl"></div>
 							<img
-								src="images/second_car.png"
+								src="/images/second_car.png"
 								alt="second car"
 								className="w-[85%] absolute top-2 left-11"
 							/>

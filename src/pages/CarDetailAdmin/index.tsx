@@ -32,40 +32,37 @@ export default function CarDetailAdmin() {
 
 			setCar(data);
 			console.log(data);
+
+			await fetchCarCatalog(data.catalogId);
+			await fetchCarMake(data.makeId);
 		} catch (error) {
 			console.error("Error fetching car:", error);
 		} finally {
-			fetchCarCatalog();
-			fetchCarMake();
 			setIsLoading(false);
 		}
 	}
 
-	async function fetchCarCatalog() {
+	async function fetchCarCatalog(catalogId: number) {
 		try {
 			const { data } = await axios.get(
-				`https://localhost:7174/api/Catalog/${car?.catalogId}`
+				`https://localhost:7174/api/Catalog/${catalogId}`
 			);
 			setCatalog(data.catalogName);
 			console.log(data);
 		} catch (error) {
 			console.error("Error fetching catalog:", error);
-		} finally {
-			setIsLoading(false);
 		}
 	}
 
-	async function fetchCarMake() {
+	async function fetchCarMake(makeId: number) {
 		try {
 			const { data } = await axios.get(
-				`https://localhost:7174/api/Make/${car?.makeId}`
+				`https://localhost:7174/api/Make/${makeId}`
 			);
 			setMake(data.makeName);
 			console.log(data);
 		} catch (error) {
 			console.error("Error fetching make:", error);
-		} finally {
-			setIsLoading(false);
 		}
 	}
 

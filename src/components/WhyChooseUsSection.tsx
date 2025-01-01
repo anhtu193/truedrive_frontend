@@ -4,25 +4,25 @@ import { useEffect, useState } from "react";
 
 const financeOffersList = [
 	{
-		offerImage: "images/img_f1_svg_fill.svg",
+		offerImage: "/images/img_f1_svg_fill.svg",
 		offerTitle: "Special Financing Offers",
 		offerDescription:
 			"Our stress-free finance department that can find financial solutions to save you money.",
 	},
 	{
-		offerImage: "images/img_f2_svg.svg",
+		offerImage: "/images/img_f2_svg.svg",
 		offerTitle: "Trusted Car Dealership",
 		offerDescription:
 			"Our stress-free finance department that can find financial solutions to save you money.",
 	},
 	{
-		offerImage: "images/img_f3_svg.svg",
+		offerImage: "/images/img_f3_svg.svg",
 		offerTitle: "Transparent Pricing",
 		offerDescription:
 			"Our stress-free finance department that can find financial solutions to save you money.",
 	},
 	{
-		offerImage: "images/img_thumbs_up.svg",
+		offerImage: "/images/img_thumbs_up.svg",
 		offerTitle: "Expert Car Service",
 		offerDescription:
 			"Our stress-free finance department that can find financial solutions to save you money.",

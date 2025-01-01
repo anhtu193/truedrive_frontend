@@ -10,32 +10,32 @@ const AdminNavigation = ({ height }: AdminNavigationProps) => {
 		{
 			name: "Car",
 			path: "/",
-			iconActive: "images/car.svg",
-			icon: "images/car_unactive.svg",
+			iconActive: "/images/car.svg",
+			icon: "/images/car_unactive.svg",
 		},
 		{
 			name: "Statistic",
 			path: "/statistic",
-			iconActive: "images/statistic.svg",
-			icon: "images/statistic_unactive.svg",
+			iconActive: "/images/statistic.svg",
+			icon: "/images/statistic_unactive.svg",
 		},
 		{
 			name: "Transaction",
 			path: "/transaction",
-			iconActive: "images/transaction.svg",
-			icon: "images/transaction_unactive.svg",
+			iconActive: "/images/transaction.svg",
+			icon: "/images/transaction_unactive.svg",
 		},
 		{
 			name: "Appointment",
 			path: "/appointment",
-			iconActive: "images/appointment.svg",
-			icon: "images/appointment_unactive.svg",
+			iconActive: "/images/appointment.svg",
+			icon: "/images/appointment_unactive.svg",
 		},
 		{
 			name: "Policy",
 			path: "/policy",
-			iconActive: "images/policy.svg",
-			icon: "images/policy_unactive.svg",
+			iconActive: "/images/policy.svg",
+			icon: "/images/policy_unactive.svg",
 		},
 	];
 
