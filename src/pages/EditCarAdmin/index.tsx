@@ -93,6 +93,28 @@ export default function EditCarAdmin() {
 		}
 	}
 
+	async function getCarIdByModel(model: string) {
+		try {
+			const { data } = await axios.get(
+				`https://localhost:7174/api/Car/model/${model}`
+			);
+			return data.carId;
+		} catch (error) {
+			console.error("Error fetching car ID by model:", error);
+		}
+	}
+
+	async function fetchCarById(carId: number) {
+		try {
+			const { data } = await axios.get(
+				`https://localhost:7174/api/Car/${carId}`
+			);
+			setSelectedPrice(data.price);
+		} catch (error) {
+			console.error("Error fetching car by ID:", error);
+		}
+	}
+
 	async function fetchCarCatalog(catalogId: number) {
 		try {
 			const { data } = await axios.get(
@@ -183,6 +205,18 @@ export default function EditCarAdmin() {
 		fetchCatalogs();
 		getCarById();
 	}, []);
+
+	useEffect(() => {
+		async function updatePrice() {
+			if (selectedModel) {
+				const carId = await getCarIdByModel(selectedModel);
+				if (carId) {
+					await fetchCarById(carId);
+				}
+			}
+		}
+		updatePrice();
+	}, [selectedModel]);
 
 	if (isLoading) {
 		return (

@@ -8,6 +8,7 @@ import CarAdmin from "@/pages/CarAdmin";
 import CarDetail from "@/pages/CarDetail";
 import CarDetailAdmin from "@/pages/CarDetailAdmin";
 import Compare from "@/pages/Compare";
+import CreateTransactionAdmin from "@/pages/CreateTransactionAdmin";
 import CustomerAppointment from "@/pages/CustomerAppointment";
 import EditCarAdmin from "@/pages/EditCarAdmin";
 import EditPolicyAdmin from "@/pages/EditPolicyAdmin";
@@ -17,6 +18,7 @@ import PolicyDetailAdmin from "@/pages/PolicyDetailAdmin";
 import SearchResult from "@/pages/SearchResult";
 import StatisticAdmin from "@/pages/StatisticAdmin";
 import TransactionAdmin from "@/pages/TransactionAdmin";
+import TransactionDetailAdmin from "@/pages/TransactionDetailAdmin";
 import Wishlist from "@/pages/Wishlist";
 import { useRoutes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -52,6 +54,8 @@ const ProjectRoutes = () => {
 		{ path: "policy/:id", element: <PolicyDetailAdmin /> },
 		{ path: "policy/edit/:id", element: <EditPolicyAdmin /> },
 		{ path: "transaction", element: <TransactionAdmin /> },
+		{ path: "transaction/new", element: <CreateTransactionAdmin /> },
+		{ path: "transaction/:id", element: <TransactionDetailAdmin /> },
 		{ path: "statistic", element: <StatisticAdmin /> },
 		{ path: "appointment", element: <AppointmentAdmin /> },
 		{ path: "appointment/:id", element: <AppointmentDetailAdmin /> },

@@ -121,7 +121,7 @@ export default function PolicyAdmin() {
 						className="w-full flex flex-col bg-white px-12 py-10 mx-6 my-6 rounded-2xl h-fit"
 					>
 						<h1 className="text-[30px] font-bold">Policy</h1>
-						<div className="max-h-[500px] overflow-y-auto">
+						<div className="max-h-[500px] mt-2 overflow-y-auto">
 							<Table>
 								<TableHeader>
 									<TableRow>

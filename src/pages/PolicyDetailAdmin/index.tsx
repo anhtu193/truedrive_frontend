@@ -26,7 +26,7 @@ export default function PolicyDetailAdmin() {
 			setPolicy(data);
 			console.log(data);
 		} catch (error) {
-			console.error("Error fetching car:", error);
+			console.error("Error fetching policy:", error);
 		} finally {
 			setIsLoading(false);
 		}

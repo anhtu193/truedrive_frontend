@@ -13,12 +13,12 @@ const AdminNavigation = ({ height }: AdminNavigationProps) => {
 			iconActive: "/images/car.svg",
 			icon: "/images/car_unactive.svg",
 		},
-		{
-			name: "Statistic",
-			path: "/statistic",
-			iconActive: "/images/statistic.svg",
-			icon: "/images/statistic_unactive.svg",
-		},
+		// {
+		// 	name: "Statistic",
+		// 	path: "/statistic",
+		// 	iconActive: "/images/statistic.svg",
+		// 	icon: "/images/statistic_unactive.svg",
+		// },
 		{
 			name: "Transaction",
 			path: "/transaction",

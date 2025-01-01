@@ -146,7 +146,7 @@ export default function CarAdmin() {
 						ref={contentRef}
 						className="w-full bg-white px-12 py-10 mx-6 my-6 rounded-2xl h-[700px]"
 					>
-						<h1 className="text-[30px] font-bold mb-2">Cars</h1>
+						<h1 className="text-[30px] font-bold mb-2">Car</h1>
 						<div className="max-h-[500px] overflow-y-auto">
 							<Table>
 								<TableHeader>
