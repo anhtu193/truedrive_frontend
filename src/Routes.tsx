@@ -1,6 +1,7 @@
 import { useUser } from "@/context/UserContext";
 import AllListing from "@/pages/AllListing";
 import AppointmentAdmin from "@/pages/AppointmentAdmin";
+import AppointmentDetailAdmin from "@/pages/AppointmentDetailAdmin";
 import Blog from "@/pages/Blog";
 import BlogDetail from "@/pages/BlogDetail";
 import CarAdmin from "@/pages/CarAdmin";
@@ -49,6 +50,7 @@ const ProjectRoutes = () => {
 		{ path: "transaction", element: <TransactionAdmin /> },
 		{ path: "statistic", element: <StatisticAdmin /> },
 		{ path: "appointment", element: <AppointmentAdmin /> },
+		{ path: "appointment/:id", element: <AppointmentDetailAdmin /> },
 	];
 
 	const routes = user?.role === "Admin" ? adminRoutes : customerRoutes;

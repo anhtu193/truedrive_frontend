@@ -146,108 +146,121 @@ export default function CarAdmin() {
 						ref={contentRef}
 						className="w-full bg-white px-12 py-10 mx-6 my-6 rounded-2xl h-[700px]"
 					>
-						<h1 className="text-[30px] font-bold">Cars</h1>
-						<Table>
-							<TableHeader>
-								<TableRow>
-									<TableHead>
-										<div className="flex flex-row gap-2 text-[15px] items-center">
-											<BookA size={15} /> Model
-										</div>
-									</TableHead>
-									<TableHead>
-										<div className="flex flex-row gap-2 text-[15px] items-center">
-											<Star size={15} /> Make
-										</div>
-									</TableHead>
-									<TableHead>
-										<div className="flex flex-row gap-2 text-[15px] items-center">
-											<CalendarDays size={15} /> Year
-										</div>
-									</TableHead>
-									<TableHead>
-										<div className="flex flex-row gap-2 text-[15px] items-center">
-											<DollarSign size={15} /> Price
-										</div>
-									</TableHead>
-									<TableHead>
-										<div className="flex flex-row gap-2 text-[15px] items-center">
-											<CircleCheckBig size={15} /> Status
-										</div>
-									</TableHead>
-									<TableHead>
-										<div className="flex flex-row gap-2 text-[15px] items-center">
-											<SquareArrowOutUpRight size={15} />{" "}
-											Action
-										</div>
-									</TableHead>
-								</TableRow>
-							</TableHeader>
-							<TableBody>
-								{cars.map((car) => (
-									<TableRow key={car.carId}>
-										<TableCell>{car.model}</TableCell>
-										<TableCell>
-											{makes[car.makeId] || "Unknown"}
-										</TableCell>
-										<TableCell>{car.year}</TableCell>
-										<TableCell>
-											${car.price.toLocaleString("en-US")}
-										</TableCell>
-										<TableCell
-											className={`${cn({
-												"text-[#FF0000] font-medium":
-													car.status === "Sold",
-												"text-[#00ff00] font-medium":
-													car.status === "Available",
-												"text-[#808080] font-medium":
-													car.status ===
-													"Not Available",
-												"text-[#FFA500] font-medium":
-													car.status ===
-													"Under Inspection",
-											})}`}
-										>
-											{car.status}
-										</TableCell>
-										<TableCell>
-											<Button
-												variant="outline"
-												size="icon"
-												onClick={() =>
-													navigate(
-														`/car/${car.carId}`
-													)
-												}
-											>
-												<Search />
-											</Button>
-											<Button
-												variant="outline"
-												size="icon"
-												onClick={() =>
-													navigate(
-														`/car/edit/${car.carId}`
-													)
-												}
-											>
-												<Edit />
-											</Button>
-											<Button
-												variant="outline"
-												size="icon"
-												onClick={() => {
-													setSelectedCarId(car.carId);
-													setIsDeleteDialogOpen(true);
-												}}
-											>
-												<Trash />
-											</Button>
-										</TableCell>
+						<h1 className="text-[30px] font-bold mb-2">Cars</h1>
+						<div className="max-h-[500px] overflow-y-auto">
+							<Table>
+								<TableHeader>
+									<TableRow>
+										<TableHead>
+											<div className="flex flex-row gap-2 text-[15px] items-center">
+												<BookA size={15} /> Model
+											</div>
+										</TableHead>
+										<TableHead>
+											<div className="flex flex-row gap-2 text-[15px] items-center">
+												<Star size={15} /> Make
+											</div>
+										</TableHead>
+										<TableHead>
+											<div className="flex flex-row gap-2 text-[15px] items-center">
+												<CalendarDays size={15} /> Year
+											</div>
+										</TableHead>
+										<TableHead>
+											<div className="flex flex-row gap-2 text-[15px] items-center">
+												<DollarSign size={15} /> Price
+											</div>
+										</TableHead>
+										<TableHead>
+											<div className="flex flex-row gap-2 text-[15px] items-center">
+												<CircleCheckBig size={15} />{" "}
+												Status
+											</div>
+										</TableHead>
+										<TableHead>
+											<div className="flex flex-row gap-2 text-[15px] items-center">
+												<SquareArrowOutUpRight
+													size={15}
+												/>{" "}
+												Action
+											</div>
+										</TableHead>
 									</TableRow>
-								))}
-							</TableBody>
-						</Table>
+								</TableHeader>
+								<TableBody className="">
+									{cars.map((car) => (
+										<TableRow key={car.carId}>
+											<TableCell>{car.model}</TableCell>
+											<TableCell>
+												{makes[car.makeId] || "Unknown"}
+											</TableCell>
+											<TableCell>{car.year}</TableCell>
+											<TableCell>
+												$
+												{car.price.toLocaleString(
+													"en-US"
+												)}
+											</TableCell>
+											<TableCell
+												className={`${cn({
+													"text-[#FF0000] font-medium":
+														car.status === "Sold",
+													"text-[#00ff00] font-medium":
+														car.status ===
+														"Available",
+													"text-[#808080] font-medium":
+														car.status ===
+														"Not Available",
+													"text-[#FFA500] font-medium":
+														car.status ===
+														"Under Inspection",
+												})}`}
+											>
+												{car.status}
+											</TableCell>
+											<TableCell>
+												<Button
+													variant="outline"
+													size="icon"
+													onClick={() =>
+														navigate(
+															`/car/${car.carId}`
+														)
+													}
+												>
+													<Search />
+												</Button>
+												<Button
+													variant="outline"
+													size="icon"
+													onClick={() =>
+														navigate(
+															`/car/edit/${car.carId}`
+														)
+													}
+												>
+													<Edit />
+												</Button>
+												<Button
+													variant="outline"
+													size="icon"
+													onClick={() => {
+														setSelectedCarId(
+															car.carId
+														);
+														setIsDeleteDialogOpen(
+															true
+														);
+													}}
+												>
+													<Trash />
+												</Button>
+											</TableCell>
+										</TableRow>
+									))}
+								</TableBody>
+							</Table>
+						</div>
 					</div>
 				</div>
 			</div>
