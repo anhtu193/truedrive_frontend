@@ -59,6 +59,12 @@ export default function RatingSection() {
 	}, []);
 
 	const handleSubmitFeedback = async () => {
+		if (user.user?.role != "Customer") {
+			toast({
+				title: "You need to sign in to perform this action!",
+			});
+			return;
+		}
 		if (!value || !reviewText) {
 			toast({
 				title: "Please fill in all fields.",
